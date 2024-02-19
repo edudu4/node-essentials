@@ -1,2 +1,2 @@
 # node-essentials
-Repositório referente aos estudos com Node na instituição de ensino
+Repositório com atividades referente a Node e Express
