@@ -1,2 +1,2 @@
 # node-essentials
-Repositório com atividades referente a Node e Express
+Repositório com atividades referentes a Node e Express
