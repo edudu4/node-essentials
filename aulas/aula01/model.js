@@ -5,4 +5,4 @@ class Contato {
   }
 }
 
-module.exports = { Contato };
+module.exports = Contato;
