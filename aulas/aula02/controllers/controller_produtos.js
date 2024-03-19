@@ -9,7 +9,7 @@ const buscar = (req, res) => {
   res.json(produto);
 };
 
-const buscarPeloId = (req, res) => {
+const buscarPeloId = (req, res, next) => {
   const { produtoId } = req.params;
   const produto = produtos.find((produto) => produto.id == produtoId);
 
