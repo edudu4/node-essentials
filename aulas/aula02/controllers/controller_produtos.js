@@ -36,6 +36,15 @@ const atualizar = (req, res) => {
   res.json(produto);
 };
 
+const validarDados = (req, res, next) => {
+  const { nome, preco } = req.body;
+  if ((nome, preco)) {
+    next();
+  } else {
+    res.status(422).json({ msg: "Nome e preço são obrigatórios." });
+  }
+};
+
 const remover = (req, res) => {
   const { produtoId } = req.params;
   const posicao = produtos.findIndex((produto) => produto.id == produtoId);
@@ -49,5 +58,6 @@ module.exports = {
   buscarPeloId,
   criar,
   atualizar,
+  validarDados,
   remover,
 };
