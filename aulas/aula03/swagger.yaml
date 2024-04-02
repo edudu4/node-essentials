@@ -11,8 +11,16 @@ tags:
 paths:
   /produtos:
     get:
+      description: Listar todos produtos
       tags:
         - produtos
+      responses:
+        200:
+          description: Lista de Produtos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayProdutos'
     post:
       description: Criar um novo produto
       tags:
@@ -39,8 +47,27 @@ paths:
                 $ref: '#/components/schemas/Mensagem'
   /produtos/{produtoId}:
     get:
+      description: Obtem produto pelo ID
       tags:
         - produtos
+      parameters:
+        - in: path
+          name: produtoId
+          required: true
+          type: integer
+      responses:
+        200:
+          description: JSON com dados do produto encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Produto'
+        404:
+          description: Produto não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Mensagem'
     put:
       description: Atualizar um produto
       tags:
@@ -78,10 +105,29 @@ paths:
               schema:
                 $ref: '#/components/schemas/Mensagem'
     delete:
+      description: Remover produto
       tags:
         - produtos
+      parameters:
+        - in: path
+          name: produtoId
+          required: true
+          type: integer
+      responses:
+        204:
+          description: Produto removido com sucesso
+        404:
+          description: Produto não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
 components:
   schemas:
+    ArrayProdutos:
+      type: array
+      items:
+        $ref: '#/components/schemas/Produto'
     Produto:
       type: object
       properties:
