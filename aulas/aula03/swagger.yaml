@@ -1,0 +1,98 @@
+openapi: 3.0.0
+info:
+  title: API REST 
+  description: Exemplo de API REST com Express
+  version: 0.1.0
+servers:
+  - url: http://localhost:3000/
+    description: Ambiente de desenvolvimento
+tags:
+  - name: produtos
+paths:
+  /produtos:
+    get:
+      tags:
+        - produtos
+    post:
+      description: Criar um novo produto
+      tags:
+        - produtos
+      requestBody:
+        description: Um JSON com dados do novo produto
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+      responses:
+        201:
+          description: Produto criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'
+        422:
+          description: Nome e preço são obrigatórios
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+  /produtos/{produtoId}:
+    get:
+      tags:
+        - produtos
+    put:
+      description: Atualizar um produto
+      tags:
+        - produtos
+      parameters:
+        - in: path
+          name: produtoId
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: JSON com dados atualizados do produto  
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+      responses:
+        200:
+          description: Produto atualizado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'
+        404:
+          description: Produto não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+        422:
+          description: Nome e preço são obrigatórios
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensagem'
+    delete:
+      tags:
+        - produtos
+components:
+  schemas:
+    Produto:
+      type: object
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+        preco:
+          type: integer
+    Mensagem:
+      type: object
+      properties:
+        msg:
+          type: string
