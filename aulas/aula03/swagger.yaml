@@ -61,13 +61,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schema/Produto'
+                $ref: '#/components/schemas/Produto'
         404:
           description: Produto não encontrado
           content:
             application/json:
               schema:
-                $ref: '#/components/schema/Mensagem'
+                $ref: '#/components/schemas/Mensagem'
     put:
       description: Atualizar um produto
       tags:
