@@ -1,0 +1,33 @@
+openapi: 3.0.0
+  title: API REST
+  description: swagger pratica05
+  version: 0.1.0
+info:
+servers:
+  - url: http://localhost:3000
+  description: Ambiente de desenvolvimento
+tags:
+  - name: Produtos
+paths:
+  /produtos
+    get:
+      tags:
+        - produtos
+        responses:
+          200:
+            description: Uma lista de produtos
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ArrayOfProdutos'
+    post:
+      tags:
+        - produtos
+        requestBody:
+          description:
+          required:
+        responses:
+          201:
+          422:
+  /produtos/{produtoId}
+components:
